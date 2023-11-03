@@ -7,9 +7,9 @@ provider "aws" {
 
 # Cluster
 resource "aws_ecs_cluster" "aws-ecs-cluster" {
-  name = "urlapp-cluster"
+  name = "bankingApp_Cluster"
   tags = {
-    Name = "url-ecs"
+    Name = "banking_app"
   }
 }
 
@@ -24,12 +24,12 @@ resource "aws_cloudwatch_log_group" "log-group" {
 # Task Definition
 
 resource "aws_ecs_task_definition" "aws-ecs-task" {
-  family = "url-task"
+  family = "banking-task"
 
   container_definitions = <<EOF
   [
   {
-      "name": "url-container",
+      "name": "banking-container",
       "image": "tsanderson77/bankapp11:latest",
       "logConfiguration": {
         "logDriver": "awslogs",
