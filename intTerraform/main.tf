@@ -30,7 +30,7 @@ resource "aws_ecs_task_definition" "aws-ecs-task" {
   [
   {
       "name": "banking-container",
-      "image": "tsanderson77/bankapp11:latest",
+      "image": "darrielleevans/banking3.7:container",
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
@@ -41,7 +41,7 @@ resource "aws_ecs_task_definition" "aws-ecs-task" {
       },
       "portMappings": [
         {
-          "containerPort": 5000
+          "containerPort": 8000
         }
       ]
     }
@@ -51,15 +51,15 @@ resource "aws_ecs_task_definition" "aws-ecs-task" {
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   memory                   = "1024"
-  cpu                      = "512"
-  execution_role_arn       = "arn:aws:iam::156156311593:role/ecsTaskExecutionRole"
-  task_role_arn            = "arn:aws:iam::156156311593:role/ecsTaskExecutionRole"
+  cpu                      = "512" 876052267588
+  execution_role_arn       = "arn:aws:iam::876052267588:role/ecsTaskExecutionRole"
+  task_role_arn            = "arn:aws:iam::876052267588:role/ecsTaskExecutionRole"
 
 }
 
 # ECS Service
 resource "aws_ecs_service" "aws-ecs-service" {
-  name                 = "url-ecs-service"
+  name                 = "bankingapp-service"
   cluster              = aws_ecs_cluster.aws-ecs-cluster.id
   task_definition      = aws_ecs_task_definition.aws-ecs-task.arn
   launch_type          = "FARGATE"
