@@ -1,7 +1,7 @@
 pipeline {
   agent {label 'awsDeploy2'}
   environment{
-      DOCKERHUB_CREDENTIALS = credentials('tsanderson77-dockerhub')
+      DOCKERHUB_CREDENTIALS = credentials('darrielleevans')
       }
    stages {
      
@@ -28,7 +28,7 @@ pipeline {
      
     stage ('Build') {
       steps {
-          sh 'docker build -t tsanderson77/bankapp11 .'
+          sh 'docker build -t darrielleevans/banking3.7:container'
     }
 }
      stage ('Login') {
@@ -39,7 +39,7 @@ pipeline {
 
      stage ('Push') {
         steps {
-            sh 'docker push tsanderson77/bankapp11'
+            sh 'docker push darrielleevans/banking3.7:container'
   }
      }
 
