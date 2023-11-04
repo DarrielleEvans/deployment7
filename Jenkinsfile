@@ -28,7 +28,7 @@ pipeline {
      
     stage ('Build') {
       steps {
-          sh 'docker build -t darrielleevans/banking3.7 .'
+          sh 'docker build -t darrielleevans/banking3.7:container .'
     }
 }
      stage ('Login') {
@@ -39,7 +39,7 @@ pipeline {
 
      stage ('Push') {
         steps {
-            sh 'docker push darrielleevans/banking3.7'
+            sh 'docker push darrielleevans/banking3.7:container'
   }
      }
 
